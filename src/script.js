@@ -31,18 +31,13 @@ camera.position.z = 2
 scene.add(camera)
 scene.add(mesh)
 
-// Controls
 const controls = new OrbitControls(camera, canvas)
 
-
-//Renderer
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
 
-
-//Clock
 const clock = new THREE.Clock()
 
 const tick = () => {
