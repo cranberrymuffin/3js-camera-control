@@ -16,18 +16,19 @@ camera.position.z = 2
 scene.add(camera)
 scene.add(mesh)
 
-//allows us to click interact with scene
 const controls = new OrbitControls(camera, canvas)
 
+//Render must be called
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
 
+// Render update
+// * * *  makes motion happen
 const animateFrame = () => {
     renderer.render(scene, camera)
     window.requestAnimationFrame(animateFrame)
 }
 
-//must be called once
 animateFrame()
