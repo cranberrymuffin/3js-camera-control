@@ -1,16 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/Addons.js'
 
-const cursor = {
-    x: 0,
-    y: 0
-}
-window.addEventListener('mousemove', (event) => {
-    cursor.x = event.clientX / sizes.width - 0.5
-    cursor.y = -(event.clientY / sizes.height - 0.5)
-})
-
-
 const canvas = document.querySelector('canvas.webgl')
 
 const scene = new THREE.Scene()
