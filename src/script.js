@@ -5,6 +5,7 @@ const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
 }
+const camera =  new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 1000)
 
 window.addEventListener('resize', ()  => {
     sizes.width = window.innerWidth
@@ -18,13 +19,32 @@ window.addEventListener('resize', ()  => {
 const canvas = document.querySelector('canvas.webgl')
 
 const scene = new THREE.Scene()
-const mesh = new THREE.Mesh(new THREE.BoxGeometry(1,1,1), new THREE.MeshBasicMaterial({ color: 0xff0000 }))
-const camera =  new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 1000)
+const particlesGeometry = new THREE.BufferGeometry()
+
+const count = 5000
+const positions = new Float32Array(count * 3)
+
+for(let i = 0; i < count * 3; i++) {
+    positions[i] = (Math.random() - 0.5) * 10
+}
+
+particlesGeometry.setAttribute(
+    'position',
+    new THREE.BufferAttribute(positions, 3)
+)
+
+const textureLoader = new THREE.TextureLoader()
+const particleTexture = textureLoader.load('/textures/snowflake.jpg')
+
+const particlesMaterial = new THREE.PointsMaterial({size: 0.1, sizeAttenuation: true})
+particlesMaterial.map = particleTexture
+const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+
 
 camera.position.z = 2
 
 scene.add(camera)
-scene.add(mesh)
+scene.add(particles)
 
 const controls = new OrbitControls(camera, canvas)
 
