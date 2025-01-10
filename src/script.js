@@ -12,6 +12,7 @@ window.addEventListener('resize', ()  => {
     camera.aspect = sizes.width / sizes.height
     camera.updateProjectionMatrix()
     renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
 const canvas = document.querySelector('canvas.webgl')
@@ -32,7 +33,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
-
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 // Render update
 // * * *  makes motion happen
 const animateFrame = () => {
