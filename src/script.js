@@ -36,8 +36,7 @@ particlesGeometry.setAttribute(
 const textureLoader = new THREE.TextureLoader()
 const particleTexture = textureLoader.load('/textures/snowflake.jpg')
 
-const particlesMaterial = new THREE.PointsMaterial({size: 0.1, sizeAttenuation: true})
-particlesMaterial.map = particleTexture
+const particlesMaterial = new THREE.PointsMaterial({size: 0.1, sizeAttenuation: true, map: particleTexture})
 const particles = new THREE.Points(particlesGeometry, particlesMaterial)
 
 
